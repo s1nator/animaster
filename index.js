@@ -6,22 +6,26 @@ function animaster() {
             element.style.transitionDuration = `${duration}ms`;
             element.classList.remove('hide');
             element.classList.add('show');
+            this.resetFadeIn(element);
         },
 
         fadeOut(element, duration) {
             element.style.transitionDuration = `${duration}ms`;
             element.classList.remove('show');
             element.classList.add('hide');
+            this.resetFadeOut(element);
         },
 
         move(element, duration, translation) {
             element.style.transitionDuration = `${duration}ms`;
             element.style.transform = getTransform(translation, null);
+            this.resetMoveAndScale(duration);
         },
 
         scale(element, duration, ratio) {
             element.style.transitionDuration = `${duration}ms`;
             element.style.transform = getTransform(null, ratio);
+            this.resetMoveAndScale(duration);
         },
 
         moveAndHide(element, duration) {
@@ -53,6 +57,19 @@ function animaster() {
                     clearInterval(interval);
                 }
             };
+        },
+
+        resetFadeIn(element) {
+            element.style.transitionDuration = null;
+        },
+
+        resetFadeOut(element, duration) {
+            element.style.transitionDuration = null;
+        },
+
+        resetMoveAndScale(duration) {
+            element.style.transitionDuration = `${duration}ms`;
+            element.style.transform = getTransform(null, null);
         }
     };
 }
