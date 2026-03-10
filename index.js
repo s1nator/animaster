@@ -88,9 +88,17 @@ function addListeners() {
         animaster().showAndHide(block, 5000);
     });
 
+    let hearAnimation;
+
     document.getElementById('heartBeatingPlay').addEventListener('click', function () {
         const block = document.getElementById('heartBeatingBlock');
-        animaster().heartBeating(block);
+        hearAnimation = animaster().heartBeating(block);
+    });
+
+    document.getElementById('heartBeatingStop').addEventListener('click', function () {
+        if (hearAnimation) {
+            hearAnimation.stop();
+        }
     });
 }
 
